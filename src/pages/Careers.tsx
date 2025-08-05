@@ -191,7 +191,11 @@ const Careers = () => {
                         </Badge>
                       </div>
                     </div>
-                    <Button variant="tech" className="shrink-0">
+                    <Button 
+                      variant="tech" 
+                      className="shrink-0"
+                      onClick={() => window.location.href = `/careers/apply/${position.title.toLowerCase().replace(/\s+/g, '-')}`}
+                    >
                       Apply Now
                     </Button>
                   </div>
