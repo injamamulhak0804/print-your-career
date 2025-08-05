@@ -111,9 +111,9 @@ const JobApplication = () => {
       </section>
 
       <div className="container mx-auto px-4 py-12">
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="max-w-4xl mx-auto space-y-12">
           {/* Job Details */}
-          <div className="lg:col-span-2 space-y-8">
+          <div className="space-y-8">
             {/* Overview */}
             <Card>
               <CardHeader>
@@ -161,90 +161,120 @@ const JobApplication = () => {
 
           {/* Application Form */}
           <div>
-            <Card className="sticky top-8">
-              <CardHeader>
-                <CardTitle className="text-2xl text-primary">Apply Now</CardTitle>
-                <CardDescription>
-                  Fill out the form below to submit your application
+            <Card className="border-2 border-primary/20 shadow-lg">
+              <CardHeader className="bg-gradient-to-r from-primary/5 to-accent/5 border-b border-primary/10">
+                <CardTitle className="text-3xl text-primary text-center">Apply Now</CardTitle>
+                <CardDescription className="text-center text-lg">
+                  Take the next step in your career with us
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="firstName">First Name</Label>
-                      <Input id="firstName" required />
+              <CardContent className="p-8">
+                <form onSubmit={handleSubmit} className="space-y-8">
+                  {/* Personal Information */}
+                  <div className="space-y-6">
+                    <h3 className="text-xl font-semibold text-primary border-b border-primary/20 pb-2">
+                      Personal Information
+                    </h3>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <Label htmlFor="firstName" className="text-base font-medium">First Name *</Label>
+                        <Input id="firstName" required className="h-12 text-lg" />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="lastName" className="text-base font-medium">Last Name *</Label>
+                        <Input id="lastName" required className="h-12 text-lg" />
+                      </div>
                     </div>
-                    <div>
-                      <Label htmlFor="lastName">Last Name</Label>
-                      <Input id="lastName" required />
+                    
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <Label htmlFor="email" className="text-base font-medium">Email Address *</Label>
+                        <Input id="email" type="email" required className="h-12 text-lg" />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="phone" className="text-base font-medium">Phone Number</Label>
+                        <Input id="phone" type="tel" className="h-12 text-lg" />
+                      </div>
                     </div>
                   </div>
 
-                  <div>
-                    <Label htmlFor="email">Email</Label>
-                    <Input id="email" type="email" required />
+                  {/* Professional Information */}
+                  <div className="space-y-6">
+                    <h3 className="text-xl font-semibold text-primary border-b border-primary/20 pb-2">
+                      Professional Information
+                    </h3>
+                    <div className="space-y-2">
+                      <Label htmlFor="experience" className="text-base font-medium">Years of Experience *</Label>
+                      <Select required>
+                        <SelectTrigger className="h-12 text-lg">
+                          <SelectValue placeholder="Select your experience level" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="0-1">0-1 years</SelectItem>
+                          <SelectItem value="2-3">2-3 years</SelectItem>
+                          <SelectItem value="4-5">4-5 years</SelectItem>
+                          <SelectItem value="6-10">6-10 years</SelectItem>
+                          <SelectItem value="10+">10+ years</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </div>
 
-                  <div>
-                    <Label htmlFor="phone">Phone Number</Label>
-                    <Input id="phone" type="tel" />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="experience">Years of Experience</Label>
-                    <Select required>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select experience level" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="0-1">0-1 years</SelectItem>
-                        <SelectItem value="2-3">2-3 years</SelectItem>
-                        <SelectItem value="4-5">4-5 years</SelectItem>
-                        <SelectItem value="6-10">6-10 years</SelectItem>
-                        <SelectItem value="10+">10+ years</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div>
-                    <Label htmlFor="coverLetter">Cover Letter</Label>
-                    <Textarea 
-                      id="coverLetter" 
-                      placeholder="Tell us why you're interested in this position and what makes you a great fit..."
-                      className="min-h-32"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="resume">Resume/CV</Label>
-                    <div className="mt-2 border-2 border-dashed border-muted rounded-lg p-6 text-center">
-                      <Upload className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
-                      <p className="text-sm text-muted-foreground">
-                        Click to upload or drag and drop
-                      </p>
-                      <p className="text-xs text-muted-foreground mt-1">
-                        PDF, DOC, DOCX (max 5MB)
-                      </p>
-                      <Input 
-                        id="resume" 
-                        type="file" 
-                        accept=".pdf,.doc,.docx" 
-                        className="hidden" 
-                        required 
+                  {/* Application Documents */}
+                  <div className="space-y-6">
+                    <h3 className="text-xl font-semibold text-primary border-b border-primary/20 pb-2">
+                      Application Documents
+                    </h3>
+                    <div className="space-y-2">
+                      <Label htmlFor="coverLetter" className="text-base font-medium">Cover Letter *</Label>
+                      <Textarea 
+                        id="coverLetter" 
+                        placeholder="Tell us about your passion for 3D printing technology, relevant experience, and what excites you about joining our team..."
+                        className="min-h-40 text-lg resize-none"
+                        required
                       />
                     </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="resume" className="text-base font-medium">Resume/CV *</Label>
+                      <div className="mt-3 border-2 border-dashed border-primary/30 rounded-xl p-8 text-center hover:border-primary/50 transition-colors cursor-pointer bg-gradient-to-br from-primary/5 to-accent/5">
+                        <Upload className="w-12 h-12 text-primary mx-auto mb-4" />
+                        <p className="text-lg font-medium text-primary mb-2">
+                          Upload your resume
+                        </p>
+                        <p className="text-sm text-muted-foreground mb-1">
+                          Click to browse or drag and drop your file here
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          Supported formats: PDF, DOC, DOCX (max 5MB)
+                        </p>
+                        <Input 
+                          id="resume" 
+                          type="file" 
+                          accept=".pdf,.doc,.docx" 
+                          className="hidden" 
+                          required 
+                        />
+                      </div>
+                    </div>
                   </div>
 
-                  <Button 
-                    type="submit" 
-                    className="w-full" 
-                    size="lg"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? "Submitting..." : "Submit Application"}
-                  </Button>
+                  <div className="pt-6 border-t border-primary/20">
+                    <Button 
+                      type="submit" 
+                      className="w-full h-14 text-lg font-semibold" 
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
+                          Submitting Application...
+                        </>
+                      ) : (
+                        "Submit Application"
+                      )}
+                    </Button>
+                  </div>
                 </form>
               </CardContent>
             </Card>
