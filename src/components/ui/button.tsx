@@ -1,58 +1,65 @@
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
+import React from "react";
+import { cn } from "@/lib/utils";
 
-import { cn } from "@/lib/utils"
+type ButtonVariant =
+  | "default"
+  | "destructive"
+  | "outline"
+  | "secondary"
+  | "ghost"
+  | "link"
+  | "tech"
+  | "tech-outline"
+  | "primary"
+  | "primary-outline";
 
-const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-        tech: "bg-gradient-to-r from-tech-blue to-tech-teal text-white hover:shadow-lg hover:scale-105 transition-all duration-300",
-        "tech-outline": "border-2 border-tech-blue text-tech-blue hover:bg-tech-blue hover:text-white transition-all duration-300",
-      },
-      size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        icon: "h-10 w-10",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
-  }
-)
+type ButtonSize = "default" | "sm" | "lg" | "icon";
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  type?: "button" | "submit" | "reset";
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button"
-    return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
-    )
-  }
-)
-Button.displayName = "Button"
+// Tailwind classes for variants
+const variantClasses: Record<ButtonVariant, string> = {
+  default: "bg-primary text-primary-foreground hover:bg-primary/90",
+  primary: "bg-primary text-primary-foreground hover:bg-primary/80",
+  secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+  destructive:
+    "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+  outline:
+    "border border-input bg-background hover:border-primary hover:text-primary",
+  ghost: "hover:bg-accent",
+  link: "text-primary underline hover:underline",
+  tech: "bg-gradient-to-r from-tech-blue to-tech-teal text-white hover:shadow-lg hover:scale-105 transition-all duration-300",
+  "tech-outline":
+    "border-2 border-tech-blue text-tech-blue hover:bg-tech-blue hover:text-white transition-all duration-300",
+  "primary-outline":
+    "bg-primary text-primary-foreground hover:bg-white hover:text-primary border hover:border-primary",
+};
 
-export { Button, buttonVariants }
+// Tailwind classes for sizes
+const sizeClasses: Record<ButtonSize, string> = {
+  default: "h-10 px-4 py-2",
+  sm: "h-9 px-3",
+  lg: "h-11 px-8",
+  icon: "h-10 w-10",
+};
+
+export const Button: React.FC<ButtonProps> = ({
+  variant = "default",
+  size = "default",
+  className = "",
+  ...props
+}) => {
+  return (
+    <button
+      className={cn(`inline-flex items-center
+       justify-center gap-2 rounded-md text-sm font-medium
+       transition-colors
+       ${variantClasses[variant]} ${sizeClasses[size]} ${className}`)}
+      {...props}
+    />
+  );
+};
