@@ -29,7 +29,7 @@ const variantClasses: Record<ButtonVariant, string> = {
   destructive:
     "bg-destructive text-destructive-foreground hover:bg-destructive/90",
   outline:
-    "border border-input bg-background hover:border-primary hover:text-primary",
+    "border border-input shadow hover:shadow-hover bg-background hover:border-primary hover:text-primary",
   ghost: "hover:bg-accent",
   link: "text-primary underline hover:underline",
   tech: "bg-gradient-to-r from-tech-blue to-tech-teal text-white hover:shadow-lg hover:scale-105 transition-all duration-300",

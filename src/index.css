@@ -8,38 +8,39 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 0 0% 100%; /*#ffffff*/
+    --foreground: 222.2 84% 4.9%; /*#020817*/
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%; /*#ffffff*/
+    --card-foreground: 222.2 84% 4.9%; /*#020817*/
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%; /*#ffffff*/
+    --popover-foreground: 222.2 84% 4.9%; /*#020817*/
 
-    --primary: 0 100% 50%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 0 100% 50%; /*#FF0000*/
+    --primary-foreground: 0 0% 100%; /*#ffffff*/
 
-    --secondary: 225 40% 98%;
-    --secondary-foreground: 0 0% 9%;
+    --secondary: 225 40% 98%; /*#F8F9FC*/
+    --secondary-foreground: 0 0% 9%; /*#171717*/
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 0 0% 96%; /*#f5f5f5*/
+    --muted-foreground: 0 0% 45%; /*#737373*/
 
-    --accent: 0 0% 0%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 217 14.2% 47.1%; /*#677489*/
+    --accent-foreground: 0 0% 100%; /*#ffffff*/
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84.2% 60.2%; /*#ef4444*/
     --destructive-foreground: 210 40% 98%;
 
-    --border: 215 27.3% 91.4%;
+    --border: 215 27.3% 91.4%; /*#E3E8EF*/
     --input: 215 27.3% 91.4%; /*#E3E8EF*/
-    --ring: 0 100% 50%;
-    --shadow: 
+    --ring: 0 100% 50%; /*#ff0000*/
+    --shadow: 0 0% 90.2%; /*#e6e6e6*/
+    --shadow-hover: 0 100% 92.2%; /*#FFD7D7*/
 
     /* Custom design tokens for 3D printer career site */
-    --tech-blue: 0 100% 50%;
-    --tech-teal: 0 0% 0%;
+    --tech-blue: 0 100% 50%; /*#ff0000*/
+    --tech-teal: 0 0% 0%; /*#f5f5f5*/
     --tech-gradient: linear-gradient(135deg, hsl(0 100% 50%), hsl(0 0% 0%));
     --section-gradient: linear-gradient(180deg, hsl(0 0% 100%), hsl(0 0% 98%));
     --hero-gradient: linear-gradient(
