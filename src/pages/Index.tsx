@@ -154,12 +154,12 @@ const Index = () => {
           </div>
         </div>
 
-        <div className="flex justify-center w-full bg-red-500">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2 p-2 place-items-center bg-slate-300">
+        <div className="flex justify-center w-fit bg-red-500/0">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-2 p-2 place-items-center bg-slate-300/0">
             {ECO_SYSTEM.map((value, index) => (
               <Card
                 key={index}
-                className="shadow-sm transition-all duration-300 border-[1px] border-border backdrop-blur-sm text-center"
+                className="max-w-96 py-10 shadow-sm transition-all duration-300 border-[1px] border-border backdrop-blur-sm text-center"
               >
                 <CardHeader className="px-2">
                   <div className="flex gap-2 justify-center items-center">
@@ -241,6 +241,7 @@ const Index = () => {
           </FAQ>
         </div>
       </div>
+
       <div className="bg-red-800/0 w-fit mx-auto">
         <div
           // className="grid md:grid-cols-2 lg:grid-cols-3 gap-2 p-2 items-center justify-center place-content-center"

@@ -77,7 +77,7 @@ const PrinterSpecs = () => {
   };
 
   return (
-    <section className="min-h-screen bg-background text-foreground py-16">
+    <section className="min-h-screen bg-foreground text-background py-16">
       <div className="container mx-auto px-6">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
@@ -95,30 +95,23 @@ const PrinterSpecs = () => {
         </div>
 
         {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 relative">
+        <div className="grid grid-cols-1 lg:grid-cols-3 relative place-content-center items-center">
           {/* Left Navigation */}
-          <div className="lg:col-span-3 relative">
-            <div className="space-y-3">
+          <div className="lg:col-span-1 relative">
+            <div className="md:space-y-6 flex gap-5 my-10 md:block">
               {tabs.map((tab, index) => (
-                <div key={tab} className="relative">
+                <div className="flex items-center">
                   <Button
                     variant={activeTab === tab ? "default" : "ghost"}
-                    className={`w-full justify-start text-left h-12 transition-all duration-200 relative z-10 ${
-                      activeTab === tab
-                        ? "bg-primary text-primary-foreground shadow-[var(--shadow-glow)]"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
+                    className="relative z-10 rounded-3xl px-7 border border-white"
                     onClick={() => setActiveTab(tab)}
                   >
                     {tab}
                   </Button>
 
-                  {/* Connecting Line - only visible for active tab */}
+                  {/* Line */}
                   {activeTab === tab && (
-                    <div className="absolute right-0 top-1/2 transform -translate-y-1/2 hidden lg:block">
-                      <div className="w-8 h-px bg-primary animate-fade-in"></div>
-                      <div className="absolute right-0 top-0 w-[20rem] h-1 bg-accent rounded-full transform translate-x-1/2 -translate-y-1/2"></div>
-                    </div>
+                    <div className="flex-grow h-[1.2px] bg-accent hidden lg:block"></div>
                   )}
                 </div>
               ))}
@@ -128,11 +121,55 @@ const PrinterSpecs = () => {
           {/* Center - Technical Diagrams */}
 
           {/* Right - Specifications */}
-          <div className="lg:col-span-4 border p-10">
+          <div className="lg:col-span-2 border rounded-md p-10 flex gap-5">
+            <div>
+              <img src="/printer.png" alt="" />
+              <div className="grid grid-cols-2 gap-x-28 bg-green-500/0">
+                <div className="col-span-1">
+                  <div className="mt-8">
+                    <h3 className="text-sm font-medium text-muted-foreground mb-4">
+                      Physical Dimensions
+                    </h3>
+                    <div className="grid grid-cols-2 text-sm">
+                      <div>
+                        <p className="text-background font-semibold">Width</p>
+                        <p className="text-background font-semibold">Depth</p>
+                        <p className="text-background font-semibold">Height</p>
+                        <p className="text-background font-semibold">Weight</p>
+                      </div>
+                      <div>
+                        <p className="font-mono">{physicalDimensions.width}</p>
+                        <p className="font-mono">{physicalDimensions.depth}</p>
+                        <p className="font-mono">{physicalDimensions.height}</p>
+                        <p className="font-mono">{physicalDimensions.weight}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-span-1">
+                  <h3 className="text-sm font-medium text-muted-foreground my-6">
+                    Build Volume
+                  </h3>
+                  <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <p className="text-bacground font-semibold">Width</p>
+                      <p className="text-bacground font-semibold">Depth</p>
+                      <p className="text-bacground font-semibold">Height</p>
+                    </div>
+                    <div>
+                      <p className="font-mono">{buildVolume.width}</p>
+                      <p className="font-mono">{buildVolume.depth}</p>
+                      <p className="font-mono">{buildVolume.height}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div
               className="space-y-8 transition-all duration-300"
               key={activeTab}
             >
+              <div></div>
               {/* Printing Process */}
               <div className="animate-in fade-in duration-200">
                 <h3 className="text-sm font-medium text-tech-highlight mb-2">
