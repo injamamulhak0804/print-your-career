@@ -155,11 +155,11 @@ const Index = () => {
         </div>
 
         <div className="flex justify-center w-fit bg-red-500/0">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-2 p-2 place-items-center bg-slate-300/0">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 p-2 place-items-center bg-slate-300/0">
             {ECO_SYSTEM.map((value, index) => (
               <Card
                 key={index}
-                className="max-w-96 py-10 shadow-sm transition-all duration-300 border-[1px] border-border backdrop-blur-sm text-center"
+                className="max-w-96 py-6 shadow transition-all duration-300 border-[1px] border-border backdrop-blur-sm flex flex-col items-center"
               >
                 <CardHeader className="px-2">
                   <div className="flex gap-2 justify-center items-center">
@@ -170,10 +170,13 @@ const Index = () => {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground/60 text-sm">
+                  <p className="text-accent text-sm font-medium">
                     {value.description}
                   </p>
                 </CardContent>
+                <CardFooter className="">
+                  <Button variant="outline">Learn More</Button>
+                </CardFooter>
               </Card>
             ))}
           </div>
@@ -212,33 +215,6 @@ const Index = () => {
           <div>
             <Button variant="tech-outline">Book a Demo</Button> - tech-outline
           </div>
-        </div>
-
-        <div className="bg-slate-600/0">
-          <FAQ icons={icons} className="bg-slate-600/0">
-            {faqs.map((faq, index) => {
-              const isOpen = icons ? openIndex === index : true;
-              return (
-                <FAQItem key={index}>
-                  <FAQHeader
-                    onClick={() => icons && setOpenIndex(isOpen ? null : index)}
-                  >
-                    <FAQTitle>{faq.question}</FAQTitle>
-                    {icons && (
-                      <span
-                        className={`transition-transform ${
-                          isOpen ? "rotate-180" : ""
-                        }`}
-                      >
-                        ▼
-                      </span>
-                    )}
-                  </FAQHeader>
-                  {isOpen && <FAQContent>{faq.answer}</FAQContent>}
-                </FAQItem>
-              );
-            })}
-          </FAQ>
         </div>
       </div>
 
@@ -380,6 +356,35 @@ const Index = () => {
       </section>
       <section className="py-20">
         <PrinterSpecs />
+      </section>
+
+      <section>
+        <div className="container px-28 bg-slate-600/0">
+          <FAQ icons={icons} className="bg-slate-600/0">
+            {faqs.map((faq, index) => {
+              const isOpen = icons ? openIndex === index : true;
+              return (
+                <FAQItem key={index}>
+                  <FAQHeader
+                    onClick={() => icons && setOpenIndex(isOpen ? null : index)}
+                  >
+                    <FAQTitle>{faq.question}</FAQTitle>
+                    {icons && (
+                      <span
+                        className={`transition-transform ${
+                          isOpen ? "rotate-180" : ""
+                        }`}
+                      >
+                        ▼
+                      </span>
+                    )}
+                  </FAQHeader>
+                  {isOpen && <FAQContent>{faq.answer}</FAQContent>}
+                </FAQItem>
+              );
+            })}
+          </FAQ>
+        </div>
       </section>
     </>
   );
